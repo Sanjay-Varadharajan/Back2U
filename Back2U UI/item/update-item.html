@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Update Item</title>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/item.js" defer></script>
+</head>
+<body>
+<div class="form-container">
+    <h2>Update Item</h2>
+    <form id="updateItemForm">
+        <input type="number" placeholder="Item ID" id="itemId" required>
+        <input type="text" placeholder="Item Title" id="itemTitle" required>
+        <input type="text" placeholder="Item Description" id="itemDescription" required>
+        <input type="text" placeholder="Item Category" id="itemCategory" required>
+        <input type="text" placeholder="Missed Location" id="missedLocation" required>
+        <input type="text" placeholder="User Email" id="userMail" required>
+        <select id="itemStatus">
+            <option value="LOST">Lost</option>
+            <option value="FOUND">Found</option>
+        </select>
+        <button type="submit">Update Item</button>
+    </form>
+    <div id="response" class="response"></div>
+</div>
+
+<script>
+document.getElementById("updateItemForm")?.addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    const data={
+        itemId: parseInt(document.getElementById("itemId").value),
+        itemTitle: document.getElementById("itemTitle").value,
+        itemDescription: document.getElementById("itemDescription").value,
+        itemCategory: document.getElementById("itemCategory").value,
+        missedLocation: document.getElementById("missedLocation").value,
+        userMail: document.getElementById("userMail").value,
+        itemStatus: document.getElementById("itemStatus").value
+    };
+    const res=await fetch(`${API_BASE}/updateitem`,{
+        method:"PUT",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify(data)
+    });
+    const result=await res.text();
+    document.getElementById("response").innerText=result;
+});
+</script>
+</body>
+</html>

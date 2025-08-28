@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Item</title>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/item.js" defer></script>
+</head>
+<body>
+<div class="form-container">
+    <h2>Add New Item</h2>
+    <form id="addItemForm">
+        <input type="text" placeholder="Item Title" id="itemTitle" required>
+        <input type="text" placeholder="Item Description" id="itemDescription" required>
+        <input type="text" placeholder="Item Category" id="itemCategory" required>
+        <input type="text" placeholder="Missed Location" id="missedLocation" required>
+        <input type="text" placeholder="User Email" id="userMail" required>
+        <select id="itemStatus">
+            <option value="LOST">Lost</option>
+            <option value="FOUND">Found</option>
+        </select>
+        <button type="submit">Add Item</button>
+    </form>
+    <div id="response" class="response"></div>
+</div>
+</body>
+</html>

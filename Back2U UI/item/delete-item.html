@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delete Item</title>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/item.js" defer></script>
+</head>
+<body>
+<div class="form-container">
+    <h2>Delete Item</h2>
+    <form id="deleteItemForm">
+        <input type="number" placeholder="Item ID" id="itemId" required>
+        <button type="submit">Delete Item</button>
+    </form>
+    <div id="response" class="response"></div>
+</div>
+
+<script>
+document.getElementById("deleteItemForm")?.addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    const itemId=parseInt(document.getElementById("itemId").value);
+    const res=await fetch(`${API_BASE}/deleteitem?itemId=${itemId}`,{
+        method:"DELETE"
+    });
+    const result=await res.text();
+    document.getElementById("response").innerText=result;
+});
+</script>
+</body>
+</html>

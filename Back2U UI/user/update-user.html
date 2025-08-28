@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Update User</title>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/user.js" defer></script>
+</head>
+<body>
+<div class="form-container">
+    <h2>Update User</h2>
+    <form id="updateUserForm">
+        <input type="text" placeholder="User Email (Identifier)" id="userMail" required>
+        <input type="text" placeholder="User Name" id="userName" required>
+        <input type="text" placeholder="User Phone" id="userPhone" required>
+        <button type="submit">Update User</button>
+    </form>
+    <div id="response" class="response"></div>
+</div>
+
+<script>
+document.getElementById("updateUserForm")?.addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    const data={
+        userMail: document.getElementById("userMail").value,
+        userName: document.getElementById("userName").value,
+        userPhone: document.getElementById("userPhone").value
+    };
+    const res=await fetch(`${USER_API}/updateuser`,{
+        method:"PUT",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify(data)
+    });
+    const result=await res.text();
+    document.getElementById("response").innerText=result;
+});
+</script>
+</body>
+</html>

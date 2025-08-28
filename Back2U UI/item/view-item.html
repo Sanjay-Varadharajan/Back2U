@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>View Items</title>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/item.js" defer></script>
+</head>
+<body>
+<h2>All Items</h2>
+<div class="table-container" id="itemContainer"></div>
+
+<script>
+async function loadItems(){
+    const items = await fetchItems();
+    const container = document.getElementById("itemContainer");
+    container.innerHTML = "";
+    items.forEach(i=>{
+        container.innerHTML += `
+        <div class="card">
+            <h3>${i.itemTitle} (${i.itemStatus})</h3>
+            <p><strong>Description:</strong> ${i.itemDescription}</p>
+            <p><strong>Category:</strong> ${i.itemCategory}</p>
+            <p><strong>Location:</strong> ${i.missedLocation}</p>
+            <p><strong>UserMail:</strong> ${i.userMail}</p>
+            <p><strong>ItemID:</strong> ${i.itemId}</p>
+        </div>`;
+    });
+}
+window.addEventListener("DOMContentLoaded", loadItems);
+</script>
+</body>
+</html>

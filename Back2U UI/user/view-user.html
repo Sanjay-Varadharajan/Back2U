@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>View Users</title>
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/user.js" defer></script>
+</head>
+<body>
+<h2>All Users</h2>
+<div class="table-container" id="userContainer"></div>
+
+<script>
+async function loadUsers(){
+    const users=await fetchUsers();
+    const container=document.getElementById("userContainer");
+    container.innerHTML="";
+    users.forEach(u=>{
+        container.innerHTML+=`
+        <div class="card">
+            <h3>${u.userName}</h3>
+            <p><strong>Email:</strong> ${u.userMail}</p>
+            <p><strong>Phone:</strong> ${u.userPhone}</p>
+            <p><strong>ID:</strong> ${u.userId}</p>
+        </div>`;
+    });
+}
+window.addEventListener("DOMContentLoaded", loadUsers);
+</script>
+</body>
+</html>
